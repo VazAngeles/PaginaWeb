@@ -1,0 +1,127 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-
+scale=1.0"> 
+    <title>Formularios 2</title> 
+</head> 
+<body> 
+    <h1>Segunda parte de Formularios</h1> 
+    <br> 
+    <form action="" method="GET" target="_blank"> 
+        <p> 
+            Nombre:<br> 
+            <input type="text" size="45" maxlength="41"> 
+        </p>      
+        <p> 
+            Nombre:<br> 
+            <input type="text" size ="12" maxlength="8"  
+            placeholder="User name" 
+            > 
+        </p> 
+        <p> 
+            password:<br> 
+            <input type="password" size="10" maxlength="8" 
+            placeholder="password"> 
+        </p> 
+        <p> 
+            No Control:<br> 
+            <input type="text" 
+            size="8" maxlength="8" value="21240001" 
+            readonly> 
+        </p> 
+        <p> 
+            No Control:<br> 
+            <input type="text" 
+            size="8" maxlength="8" value="21240001" 
+            disabled> 
+        </p> 
+ 
+        <p> 
+            <input type="number" name="numero"> 
+        </p> 
+        <h2>Numeric con valor minimo de 20</h2> 
+        <p> 
+            <input type="number" name="numero1" 
+            min="20"> 
+        </p> 
+        <h2>Numeric con valor maximo de 20</h2> 
+        <p> 
+            <input type="number" name="numero2" 
+            max="100"> 
+        </p> 
+        <h2>Numeric con step 10</h2> 
+        <p> 
+            <input type="number" name="numero3" 
+            min="20" 
+            max ="120" 
+            step="10"> 
+        </p> 
+        <p> 
+            <label for="fecha">Selecciona una Fecha:</label> 
+            <input type="date" name="fecha" id="fecha"> 
+        </p> 
+        <p> 
+            seleccion Multiple<br> 
+            <select multiple name="selecMultiple"> 
+                <option value="entradas">Entradas</option> 
+                <option value="Bebidas">Bebidas</option> 
+                <option value="Plato_Fuerte">Plato Fuerte</option> 
+                <option value="Postres">Postres</option> 
+            </select> 
+        </p> 
+        <p> 
+            <input type="time" name="HoraEntrada" size="70"> 
+        </p> 
+        <p> 
+ 
+           Selector de Color:<br> 
+           <input type="color" name="color"> 
+        </p> 
+        <p> 
+            Selector de Color:<br> 
+            <input type="color" name="color" 
+            value="#ff0000"> 
+         </p> 
+         <p> 
+ 
+             selecciona un rango: 
+             <br> 
+             <input type="range" name="rango"> 
+         </p> 
+         <p> 
+            selecciona un rango personalizado: 
+            <br> 
+            <input type="range" name="rango2" min="0" max="10" step="2"> 
+        </p> 
+        <p> 
+            correo:<br> 
+            <input type="email" name="correo" size="45"> 
+        </p> 
+        <p> 
+            selecciona un archivo:<br> 
+            <input type="file" name="fichero"> 
+        </p> 
+        <button type="submit"> 
+            <img src="Img/enviar.png" alt="No esta imagen" width="32" he
+ight="32"> 
+         Enviar Formulario  
+        </button> 
+        <button type="reset">Limpiar Form</button> 
+    </form> 
+ 
+    <h1>Otra forma de poner Botones</h1> 
+    <form> 
+        <input type="submit" value="Mandar Datos"> 
+        <input type="reset" value="No Enviar"> 
+        <input type="button" value="Ejecuta Funcion"> 
+ 
+        <input title="Boton de enviar" alt="Boton Enviar" src="Img/envia
+r.png" height="50" width="50" type="image"> 
+ 
+    </form> 
+ 
+</body> 
+</html>

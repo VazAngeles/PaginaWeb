@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+  
+  tasks:
+    - name: crear base de datos
+      mysql_db: name=calificaciones state=present login_user=root login_password="angeles"
+    - name: add sample data to database
+      copy: src=web/calificaciones.sql dest=/tmp/calificaciones.sql
+    - name: insert sample data into database
+      mysql_db: name=calificaciones state=import target=/tmp/calificaciones.sql login_password="angeles"

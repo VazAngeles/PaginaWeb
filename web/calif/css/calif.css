@@ -1,0 +1,36 @@
+body {
+   background-image:url(../IMG/fondolegal.jpg);
+   font-family: Arial;
+   background-size: cover;
+}
+
+h1 {
+	text-align: center;
+	padding: 12px;
+	color: rgb(206, 203, 203)
+}
+
+.calif{
+   width: 100%;
+   text-aling: center;
+   border-collapse: collapse;
+   margin: 0 0 1em 0;
+   caption-side: top;
+   color: white;
+}
+
+.calif th, .calif td{
+   padding: 0.3em;
+   text-aling: center;
+
+   color: white;
+}
+
+.calif th{
+   font-weight: bold;
+   font-size: 1.5em;
+}
+
+.calif td{
+   font-size: 1.2em;
+}

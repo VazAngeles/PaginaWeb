@@ -1,0 +1,95 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    mysql_root_password: "angeles"
+    app_user: "angeles"
+    http_host: "app.avazquez.com"
+    http_conf: "app.avazquez.com.conf"
+    http_port: "80"
+    disable_default: true
+
+  tasks:
+ #   - name: Instalar prerequisitos
+ #     apt: name={{ item }} update_cache=yes state=latest force_apt_get=yes
+ #     loop: [ 'aptitude' ]
+
+  #Apache Configuracion
+ #   - name: Instalar paquetes LAMP 
+ #     apt: name={{ item }} update_cache=yes state=latest
+ #     loop: [ 'apache2', 'mysql-server', 'python3-pymysql', 'php', 'php-mysql', 'libapache2-mod-php' ]
+
+    - name: Crear documento root
+      file:
+        path: "/var/www/{{ http_host }}"
+        state: directory
+        owner: "{{ app_user }}"
+        mode: '0755'
+
+    - name: Apache virtualhost
+      template:
+         src: "files/apache.conf.j2"
+         dest: "/etc/apache2/sites-available/{{ http_conf }}"
+      notify: Reload Apache
+
+    - name: Habilitar nuevo sitio
+      shell: /usr/sbin/a2ensite {{ http_conf }}
+      notify: Reload Apache
+
+    - name: Disabilitar sitio prederminado de Apache
+      shell: /usr/sbin/a2dissite 000-default.conf
+      when: disable_default
+      notify: Reload Apache
+
+  # MySQL Configuracion
+  #  - name: Sets the root password
+  #    mysql_user:
+  #      login_user: root
+  #      login_password: "angeles"
+  #      name: root
+  #     password: "{{ mysql_root_password }}"
+  #      login_unix_socket: /var/run/mysqld/mysqld.sock
+
+    - name: Remover todos los usuarios anonimos
+      mysql_user:
+        name: ''
+        host_all: yes
+        state: absent
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+
+    - name: eliminar base de datos predeterminados de MySQL
+      mysql_db:
+        name: test
+        state: absent
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+
+
+    - name: "UFW - Allow HTTP on port {{ http_port }}"
+      ufw:
+        rule: allow
+        port: "{{ http_port }}"
+        proto: tcp
+
+  # PHP
+    - name: Pagina 
+      template:
+        src: "files/info.php.j2"
+        dest: "/var/www/{{ http_host }}/info.php"
+    - name: Ansible copy directory to the remote server
+      copy:
+        src: "web/calif/"
+        dest: "/var/www/{{ http_host }}/"
+
+  handlers:
+    - name: Reload Apache
+      service:
+        name: apache2
+        state: reloaded
+
+    - name: Reiniciar Apache
+      service:
+        name: apache2
+        state: restarted
