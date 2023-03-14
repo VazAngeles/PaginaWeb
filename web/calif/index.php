@@ -22,13 +22,14 @@
       <th>Parcial 1</th>
       <th>Parcial 2</th>
     </tr>
-
+<?php $resultado = mysql_query($conexion, $consulta);
+      while($row=mysqli_fetch_assoc($resultado)) { ?>
     <tr>
-        <td>18240388</td>
-        <td>Angeles Vazquez</td>
-        <td>ISC</td>
-        <td>94</td>
-        <td>94</td>
+        <td><?php echo $row["nombre"];?></td>
+        <td><?php echo $row["nombre"];?></td>
+        <td><?php echo $row["nombre"];?></td>
+        <td><?php echo $row["nombre"];?></td>
+        <td><?php echo $row["nombre"];?></td>
      </tr>     
    </table>
   </body>
